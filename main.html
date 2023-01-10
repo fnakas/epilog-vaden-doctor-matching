@@ -1,0 +1,519 @@
+
+<html>
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <script src="http://epilog.stanford.edu//epilog/javascript/epilog.js"></script>
+  <script src="http://epilog.stanford.edu//worksheets/javascript/worksheets.js"></script>
+        <script src="http://epilog.stanford.edu//worksheets/widgets/charts.js"></script></head>
+<body onload="initialize()">
+<table class="content-center" style="margin: 0px auto; width: 500px;">
+  <tbody>
+
+    <tr>
+      
+    <td colspan="4"><a href="https://vaden.stanford.edu/"><img src="header.png" alt="Vaden Health Services" width="375" height="50" style="margin: 0px auto;"></a>
+    </tr>
+    <tr>
+      <td colspan="4"><span style="font-size:20px;"><strong>&nbsp;Clinician Recommendation Form&nbsp;</strong>
+    </tr>
+
+    <tr>
+      <td colspan="4" style="color: black;"><em>&nbsp;What you describe as your primary medical concerns?</em></td>
+    </tr>
+    <tr>
+      <td colspan="4" id="c1" style="color: red;"><em>&nbsp; - Please select at least one concern</em></td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; margin: 0px auto; font-family: HelveticaNeue-Light, &quot;Helvetica Neue&quot;, Helvetica, sans-serif;">
+        <tbody>
+          <tr>
+            <td id="row(gennutrition)" style="width: 25%; background-color: rgba(239, 72, 54, 0.298039);"><input id="gennutrition" onchange="modcheck(this)" type="checkbox" />&nbsp;General Nutrition</td>
+            <td id="row(eatdisorder)" style="width: 25%; background-color: rgba(34, 167, 240, 0.298039);"><input id="eatdisorder" onchange="modcheck(this)" type="checkbox" />&nbsp;Eating Disorder</td>
+            <td id="row(rash)" style="width: 25%; background-color: rgba(34, 167, 240, 0.298039);"><input id="rash" onchange="modcheck(this)" type="checkbox">&nbsp;Rash</td>
+          </tr>
+          <tr>
+            <td id="row(acne)" style="width: 25%; background-color: rgba(239, 72, 54, 0.298039);"><input id="acne" onchange="modcheck(this)" type="checkbox" />&nbsp;Acne</td>
+            <td id="row(genskin)" style="width: 25%; background-color: rgba(239, 72, 54, 0.298039);"><input id="genskin" onchange="modcheck(this)" type="checkbox" />&nbsp;Other skin</td>
+            <td id="row(fever)" style="width: 25%; background-color: rgba(239, 72, 54, 0.298039);"><input id="fever" onchange="modcheck(this)" type="checkbox" />&nbsp;Fever</td>
+          </tr>
+          <tr>
+            <td id="row(anxiety)" style="background-color: rgba(34, 167, 240, 0.298039);"><input id="anxiety" onchange="modcheck(this)" type="checkbox" />&nbsp;Anxiety</td>
+            <td id="row(depression)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="depression" onchange="modcheck(this)" type="checkbox" />&nbsp;Depression</td>
+            <td id="row(skinirritation)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="skinirritation" onchange="modcheck(this)" type="checkbox" />&nbsp;Skin Irritation</td>
+          </tr>
+          <tr>
+            <td id="row(diarrhea)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="diarrhea" onchange="modcheck(this)" type="checkbox" />&nbsp;Diarrhea</td>
+            <td id="row(jointpain)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="jointpain" onchange="modcheck(this)" type="checkbox" />&nbsp;Joint Pain</td>
+            <td id="row(wheeze)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="wheeze" onchange="modcheck(this)" type="checkbox" />&nbsp;Wheezing</td>
+          </tr>
+
+          <tr>
+            <td id="row(palpitations)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="palpitations" onchange="modcheck(this)" type="checkbox" />&nbsp;Palpitations</td>
+            <td id="row(vertigo)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="vertigo" onchange="modcheck(this)" type="checkbox" />&nbsp;Vertigo</td>
+            <td id="row(headache)" style="background-color: rgba(255, 228, 242, 0.8);"><input id="headache" onchange="modcheck(this)" type="checkbox" />&nbsp;Headache</td>
+          </tr>
+        </tbody>
+      </table>
+      <!---
+      <tr>
+      <td id="row(askloc)" style=""><input id="askloc" onchange="modcheck(this)" type="checkbox" />&nbsp;Do you have a location preference?</td>
+    </tr>
+    <tr>
+      <td id="row(asktime)" style=""><input id="asktime" onchange="modcheck(this)" type="checkbox" />&nbsp;Do you have a time preference?</td>
+    </tr>
+    --->
+      </td>
+    </tr>
+    <tr style="vertical-align: top;">
+      <td colspan="4">
+      <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+        <tbody>
+          <tr style="vertical-align: top;">
+            <td>
+          <tr>
+            <td id="row(showcats)" style="background-color: rgba(34, 167, 240, 0.298039);"><input id="showcats" onchange="modcheck(this)" type="checkbox" />&nbsp;Show care topic categories?</td>
+          </tr>
+          <tr>
+            <td id="row(showrecs)" style="background-color: rgba(34, 167, 240, 0.298039);"><input id="showrecs" onchange="modcheck(this)" type="checkbox"/>&nbsp;Show care provider recommendations?</td>
+          </tr>
+              <chart chart-line-color="white" class="chart" widget="chart" style="display: none;" chart-table="area" chart-type="pie" chart-title="Medical Categories" chart-y-axis-title="" chart-x-axis-title="" chart-color="" chart-data-range-labels="" chart-grid-lines="none" chart-legend="bottom" chart-line-width="" id="chart" ><canvas></canvas></chart>
+            </td>          <td>
+              <table border="0" cellpadding="0" cellspacing="0" type='table' id="doctortab" style="width: 200px; font-family: HelveticaNeue-Light, 'Helvetica Neue', Helvetica, sans-serif; margin: 0px auto; text-align: center; visibility: hidden;">
+                <thead>
+                  <tr>
+                    <th displaystyle="stringfield">Doctor</th>
+                    <th>Relevance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<textarea id="lambda" style="display:none;" type="text/hrf">
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+disease("adolescent")
+disease("dermatology")
+disease("preventive")
+disease("sports")
+disease("travel")
+disease("urgent")
+disease("women")
+disease("mental")
+disease("nutrition")
+
+symptom(diarrhea)
+symptom(wheeze)
+symptom(gennutrition)
+symptom(anxiety)
+symptom(abdominalpain)
+symptom(chestpain)
+symptom(cough)
+symptom(depression)
+symptom(fever)
+symptom(headache)
+symptom(heartburn)
+symptom(itch)
+symptom(jointpain)
+symptom(lossofsmell)
+symptom(palpitations)
+symptom(runnynose)
+symptom(shortbreath)
+symptom(skinirritation)
+symptom(throatpain)
+
+value(units(diarrhea),3)
+value(units(wheeze),3)
+value(units(abdominalpain),3)
+value(units(chestpain),3)
+value(units(skinirritation),3)
+value(units(depression),3)
+value(units(vertigo),3)
+value(units(jointpain),3)
+
+concern(diarrhea,"nutrition")
+concern(jointpain,"nutrition")
+concern(wheeze,"urgent")
+concern(gennutrition,"nutrition")
+concern(eatdisorder,"nutrition")
+concern(rash,"dermatology")
+concern(acne,"dermatology")
+concern(genskin,"dermatology")
+concern(sinjury,"sports")
+concern(sperformance,"sports")
+concern(fever,"urgent")
+concern(depression,"mental")
+concern(anxiety,"mental")
+concern(itch,"dermatology")
+concern(skinirritation,"dermatology")
+concern(headache,"urgent")
+concern(vertigo,"urgent")
+concern(joint,"sports")
+concern(chestpain,"urgent")
+concern(palpitations,"urgent")
+
+value(units(gennutrition),3)
+value(units(eatdisorder),3)
+value(units(depression),3)
+value(units(rash),3)
+value(units(acne),3)
+value(units(fever),3)
+value(units(genskin),3)
+value(units(sinjury),3)
+value(units(sperformance),3)
+value(units(depression),3)
+value(units(anxiety),3)
+value(units(itch),3)
+value(units(skinirritation),3)
+value(units(headache),3)
+value(units(vertigo),3)
+value(units(joint),3)
+value(units(chestpain),3)
+value(units(palpitations),3)
+
+
+bcolor(none,gennutrition)
+bcolor(none,depression)
+bcolor(none,rash)
+bcolor(none,acne)
+bcolor(none,fever)
+bcolor(none,genskin)
+bcolor(none,sperformance)
+bcolor(none,sinjury)
+bcolor(none,eatdisorder)
+bcolor(none,anxiety)
+
+bcolor(none,gennutrition)
+bcolor(none,depression)
+bcolor(none,rash)
+bcolor(none,acne)
+bcolor(none,fever)
+bcolor(none,genskin)
+bcolor(none,sperformance)
+bcolor(none,sinjury)
+bcolor(none,eatdisorder)
+bcolor(none,anxiety)
+
+doctor("COLLOFF")
+doctor("CUA")
+doctor("CURRY")
+doctor("DAWSON")
+doctor("FARID")
+doctor("GERSHON")
+doctor("HONG")
+doctor("KASTELEIN")
+doctor("LAI")
+doctor("LOMMEL")
+doctor("MARANIA")
+doctor("MARTIN")
+doctor("PARK")
+doctor("PENDLEY")
+doctor("RICHARDS")
+doctor("RODDEN")
+doctor("STOLL")
+doctor("TEPPER")
+doctor("VU-NGUYEN")
+
+
+diseaseSymptomSet("dermatology",[itch,skinirritation],12)
+diseaseSymptomSet("dermatology",[itch],5)
+diseaseSymptomSet("dermatology",[skinirritation],5)
+diseaseSymptomSet("adolescent",[itch,skinirritation],6)
+diseaseSymptomSet("adolescent",[itch],2)
+diseaseSymptomSet("adolescent",[skinirritation],3)
+diseaseSymptomSet("sports",[headache,vertigo],10)
+diseaseSymptomSet("sports",[headache],2)
+diseaseSymptomSet("sports",[jointpain],5)
+diseaseSymptomSet("sports",[vertigo],2)
+diseaseSymptomSet("sports",[abdominalpain],4)
+diseaseSymptomSet("sports",[abdominalpain,jointpain],8)
+diseaseSymptomSet("urgent",[chestpain,headache,palpitations],100)
+diseaseSymptomSet("urgent",[chestpain,shortbreath,wheeze],50)
+diseaseSymptomSet("urgent",[chestpain,shortbreath],25)
+diseaseSymptomSet("urgent",[chestpain,palpitations],15)
+diseaseSymptomSet("urgent",[chestpain],4)
+diseaseSymptomSet("urgent",[palpitations],5)
+diseaseSymptomSet("preventive",[chestpain,headache,palpitations],100)
+diseaseSymptomSet("preventive",[chestpain,palpitations,shortbreath],15)
+diseaseSymptomSet("preventive",[chestpain],8)
+diseaseSymptomSet("preventive",[palpitations],8)
+diseaseSymptomSet("preventive",[abdominalpain],8)
+diseaseSymptomSet("preventive",[shortbreath],8)
+diseaseSymptomSet("preventive",[runnynose],8)
+diseaseSymptomSet("preventive",[throatpain],8)
+diseaseSymptomSet("preventive",[wheeze],8)
+diseaseSymptomSet("mental",[depression],10)
+diseaseSymptomSet("mental",[anxiety],10)
+diseaseSymptomSet("mental",[anxiety,depression],20)
+diseaseSymptomSet("nutrition",[gennutrition],10)
+diseaseSymptomSet("nutrition",[jointpain],4)
+diseaseSymptomSet("nutrition",[diarrhea],6)
+diseaseSymptomSet("nutrition",[diarrhea,jointpain],9)
+
+doctorCats("COLLOFF",["preventive"])
+doctorCats("CUA",["urgent","women"])
+doctorCats("CURRY",["adolescent","preventive"])
+doctorCats("DAWSON",["preventive","women"])
+doctorCats("FARID",["dermatology","preventive","women"])
+doctorCats("GERSHON",["mental","dermatology","urgent"])
+doctorCats("HONG",["adolescent"])
+doctorCats("KASTELEIN",["preventive","sports","women"])
+doctorCats("LAI",["preventive"])
+doctorCats("LOMMEL",["adolescent","women"])
+doctorCats("MARANIA",["sports"])
+doctorCats("MARTIN",["adolescent","sports","urgent"])
+doctorCats("PARK",["preventive","sports"])
+doctorCats("PENDLEY",["preventive"])
+doctorCats("RICHARDS",["travel"])
+doctorCats("RODDEN",["preventive","sports","women"])
+doctorCats("STOLL",["adolescent","preventive","travel"])
+doctorCats("TEPPER",["adolescent","women"])
+doctorCats("VU-NGUYEN",["adolescent","women"])
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Rules
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+</textarea>
+
+<textarea id="library" style="display:none;" type="text/hrf">
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Rules
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+photo("Edwin Colloff, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ed_colloff_0_0.jpeg?h=9a223a1b&itok=cU1EsdFK")
+photo("Julie Richards, NP, CTH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/julie_0_0.jpeg?h=804a83ea&itok=_NY7PAzn")
+photo("Nancy Stoll, RN, MS, BC","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/nancy_0_0.jpeg?h=92748315&itok=da5q70R5")
+photo("Laurel Dawson, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/larurel_0.jpeg?h=cee2c3b2&itok=HAFUwBdr")
+photo("Ann Vu-Nguyen, MSN, FNP","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ann_v_0.jpeg?h=4e4b0e22&itok=CxkStHng")
+photo("Michele Kastelein, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/michelle_k_0_0.jpeg?h=4f6395cb&itok=awtDUbT1")
+photo("Robyn S. Tepper, MD, FAAFP","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/robyn_0_0.jpeg?h=a40292f0&itok=dlYDxiHL")
+photo("Ammie Wilson Rodden, PA-C","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ammie_rodden_0_0.jpeg?h=96e442c5&itok=9vC22dUc")
+photo("Lisa Lommel, RN, PhD, FNP, MPH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Diana Farid, MD, MPH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/diana_farid_headshot_0.jpeg?h=6cfcc0b6&itok=1h1Gg5HF")
+photo("Doug D. Marania, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/doug_0_0.jpeg?h=48751c22&itok=UTeP5GK3")
+photo("Sandy Lai, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/sandy_0_0.jpeg?h=92748315&itok=AAKMTNj4")
+photo("Margaret Curry, RN, CTH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/magaret_curry_0_0.jpeg?h=4565adf5&itok=hksQuSmf")
+photo("Racquel Cua, PA","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Danielle Hong, RN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Susanne Martin, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Swon Park, RN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Megan Gershon, RN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Karen Pendley, RN, BSN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+
+photo("COLLOFF","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ed_colloff_0_0.jpeg?h=9a223a1b&itok=cU1EsdFK")
+photo("RICHARDS","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/julie_0_0.jpeg?h=804a83ea&itok=_NY7PAzn")
+photo("STOLL","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/nancy_0_0.jpeg?h=92748315&itok=da5q70R5")
+photo("DAWSON","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/larurel_0.jpeg?h=cee2c3b2&itok=HAFUwBdr")
+photo("VU-NGUYEN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ann_v_0.jpeg?h=4e4b0e22&itok=CxkStHng")
+photo("KASTELEIN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/michelle_k_0_0.jpeg?h=4f6395cb&itok=awtDUbT1")
+photo("TEPPER","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/robyn_0_0.jpeg?h=a40292f0&itok=dlYDxiHL")
+photo("RODDEN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ammie_rodden_0_0.jpeg?h=96e442c5&itok=9vC22dUc")
+photo("LOMMEL","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("FARID","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/diana_farid_headshot_0.jpeg?h=6cfcc0b6&itok=1h1Gg5HF")
+photo("MARANIA","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/doug_0_0.jpeg?h=48751c22&itok=UTeP5GK3")
+photo("LAI","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/sandy_0_0.jpeg?h=92748315&itok=AAKMTNj4")
+photo("CURRY","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/magaret_curry_0_0.jpeg?h=4565adf5&itok=hksQuSmf")
+photo("CUA","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("HONG","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("MARTIN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("PARK","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("GERSHON","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("PENDLEY","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+
+
+area(AREA,N) :-
+  concern(X,AREA) &
+  setofall([V,EXP], concern(EXP,AREA)&value(EXP,true)& value(units(EXP),V),S) &
+  map(first,S,L) &
+  sum(L,N)
+
+rows(doctortab,L) :- setofall(doctortab(T,N),doctortab(T,N),L)
+
+doctorOLD(T,N) :-
+  treats(DOCTOR,X) &
+  countofall(TAG,treats(DOCTOR,TAG)&value(TAG,true),N) &
+  min(N,1,1) &
+  photo(DOCTOR,PHOTO) &
+  stringappend("<img src=&#39;",PHOTO,"&#39; width=&#39;70&#39; height=&#39;70&#39; title=&#39;",DOCTOR,"&#39;/>",T)
+
+photo("Edwin Colloff, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ed_colloff_0_0.jpeg?h=9a223a1b&itok=cU1EsdFK")
+photo("Julie Richards, NP, CTH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/julie_0_0.jpeg?h=804a83ea&itok=_NY7PAzn")
+photo("Nancy Stoll, RN, MS, BC","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/nancy_0_0.jpeg?h=92748315&itok=da5q70R5")
+photo("Laurel Dawson, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/larurel_0.jpeg?h=cee2c3b2&itok=HAFUwBdr")
+photo("Ann Vu-Nguyen, MSN, FNP","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ann_v_0.jpeg?h=4e4b0e22&itok=CxkStHng")
+photo("Michele Kastelein, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/michelle_k_0_0.jpeg?h=4f6395cb&itok=awtDUbT1")
+photo("Robyn S. Tepper, MD, FAAFP","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/robyn_0_0.jpeg?h=a40292f0&itok=dlYDxiHL")
+photo("Ammie Wilson Rodden, PA-C","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/ammie_rodden_0_0.jpeg?h=96e442c5&itok=9vC22dUc")
+photo("Lisa Lommel, RN, PhD, FNP, MPH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Diana Farid, MD, MPH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/diana_farid_headshot_0.jpeg?h=6cfcc0b6&itok=1h1Gg5HF")
+photo("Doug D. Marania, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/doug_0_0.jpeg?h=48751c22&itok=UTeP5GK3")
+photo("Sandy Lai, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/sandy_0_0.jpeg?h=92748315&itok=AAKMTNj4")
+photo("Margaret Curry, RN, CTH","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/magaret_curry_0_0.jpeg?h=4565adf5&itok=hksQuSmf")
+photo("Racquel Cua, PA","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Danielle Hong, RN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Susanne Martin, MD","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Swon Park, RN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Megan Gershon, RN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+photo("Karen Pendley, RN, BSN","https://vaden.stanford.edu/sites/g/files/sbiybj20746/files/styles/medium_square/public/media/image/stanford-person-default-profile-image.png?h=55541bb6&itok=nW2Kv8t1")
+
+doctortab(T,N) :-
+  photo(DOCTOR,PHOTO) &
+  docnum(DOCTOR,N) &
+  stringappend("<img src=&#39;",PHOTO,"&#39; width=&#39;70&#39; height=&#39;70&#39; title=&#39;",DOCTOR,"&#39;/>",T)
+
+style(doctortab,visibility,visible) :- value(showrecs,true)
+style(doctortab,visibility,hidden) :- ~value(showrecs,true)
+
+style(row(X),"background-color","rgba(255, 228, 242, 0.8)") :- bcolor(none,X)
+
+style(d(X),display,"table-row") :-
+  concern(X,Y) &
+  value(X,true)
+
+style(d(X),display,none) :-
+  course(X,Y) &
+  ~value(X,true)
+
+style(chart,display,"block") :-
+  value(showcats,true)
+
+style(chart,display,none) :-
+  ~value(showcats,true) 
+
+innerhtml(u(X),V) :-
+  concern(X,Y) &
+  value(X,true) &
+  value(units(X),V)
+
+totalunits(T) :- 
+  setofall([V,X,Y],
+    teaches(Y,X) & 
+    value(X,true) & 
+    value(units(X),V), S) &
+  map(first,S,L) &
+  sum(L,T)
+
+innerhtml(t,T) :- totalunits(T)
+
+satisfied(c1) :-
+  countofall([X,Y], teaches(Y,X) & value(X,true), C) &
+  min(C,6,6)
+
+first(X!Y,X)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+style(R,color,red) :- req(R) & ~satisfied(R)
+style(R,color,black) :- req(R) & satisfied(R)
+
+req(c1)
+req(c2)
+
+value(units(X),1) :: concern(X)
+
+select(X,true) :: ~value(X,false) & value(X,true) & symptom(X) & addUserSymptom(X)
+select(X,false) :: ~value(X,true) & value(X,false)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+leq(X,Y) :- evaluate(stringmin(X,Y),X)
+leqNum(X,Y) :- evaluate(min(X,Y),X)
+primitive(X) :- symptom(X)
+primitive(X) :- disease(X)
+list(nil)
+list(cons(X,Y)) :- object(X) &  list(Y)
+object(X) :- primitive(X)
+
+mem(X,X!L) :- list(L)
+mem(X,Y!L) :- leq(Y,X) & mem(X,L)
+
+subset(nil,Y) :- list(Y)
+subset(X!L,Y) :- mem(X,Y) & subset(L,Y)
+
+intersection(nil,Y,nil) :- list(Y)
+intersection(X!L,Y,X!Z) :- mem(X,Y) & intersection(L,Y,Z)
+intersection(X!L,Y,Z) :- ~mem(X,Y) & intersection(L,Y,Z)
+
+
+minTemp(C,[])
+minTemp(C, M!X) :- evaluate(stringmin(C,M),C) & minTemp(C,X)
+listMin(L, X) :- member(X,L) & minTemp(X,L)
+
+del(X,[],[])
+del(X,Y!L1,Z!L2) :- distinct(X,Y) & same(Y,Z) & del(X, L1, L2)
+del(X,Y!L1,L2) :- same(X,Y) & del(X,L1,L2)
+
+sorted([],[])
+sorted(X, M!Y) :- listMin(X,M) & del(M, X, XM) & sorted(XM, Y)
+
+addUserSymptom(X) :: symptom(X) ==> hasSymptom(X)
+
+addSymptom(X) :: symptom(X)
+addSymptomList(X!L) :: symptom(X)
+addSymptomList(X!L) :: evaluate(length(X!L), N) & leqNum(2,N) ==> addSymptomList(L)
+
+addDisease(X) :: disease(X)
+addDiseaseList(X!L) :: disease(X)
+addDiseaseList(X!L) :: evaluate(length(X!L), N) & leqNum(2,N) ==> addDiseaseList(L)
+
+allSymptoms(Z) :- evaluate(setofall(X, symptom(X)), Y) & sorted(Y,Z)
+allDiseases(Z) :- evaluate(setofall(X, disease(X)), Y) & sorted(Y,Z)
+allUserSymptoms(Z) :- evaluate(setofall(X, hasSymptom(X)), Y) & sorted(Y,Z)
+
+addSymSet(D, S, N) :: disease(D) & list(S) & sorted(S, S2) ==> diseaseSymptomSet(D,S2, N)
+
+addDoctor(X) :: doctor(X)
+addDoctorList(X!L) :: doctor(X)
+addDoctorList(X!L) :: evaluate(length(X!L), N) & leqNum(2,N) ==> addDoctorList(L)
+defineDocDiseases(D, L) :: doctor(D) & allDiseases(T) & subset(L, T) & sorted(L,S) ==> doctorDiseases(D,S)
+defineDocDiseases(D, L) :: doctorDiseases(D,S2) & doctor(D) & allDiseases(T) & subset(L, T) & sorted(L,S) & distinct(S,S2) ==> ~doctorDiseases(D,S2)
+
+hasDisease(X) :- hasDiseaseSymptomSet(X, Z, N)
+
+patientDiseases(L) :- evaluate(setofall(D, hasDisease(D)),K) & sorted(K,L)
+
+hasDiseaseSymptomSet(X, Z, N) :- disease(X) & diseaseSymptomSet(X, Z, N) & allUserSymptoms(S) & subset(Z, S)
+
+hasDiseaseDanger(X, M) :- hasDisease(X) & evaluate(maximum(setofall(N, hasDiseaseSymptomSet(X, Z, N))),M)
+
+patientDoctorOverlap(D, I) :- doctor(D) & doctorDiseases(D,S) & patientDiseases(L) & intersection(S,L,I)
+
+doctorRelevance(D, N) :- patientDoctorOverlap(D, I) & evaluate(sum(setofall(M, member(X,I) & hasDiseaseDanger(X, M))), N)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+docnum("Edwin Colloff, MD",8)
+docnum("Julie Richards, NP, CTH",0)
+docnum("Nancy Stoll, RN, MS, BC",10)
+docnum("Laurel Dawson, MD",8)
+docnum("Ann Vu-Nguyen, MSN, FNP", 2)
+docnum("Michele Kastelein, MD", 10)
+docnum("Racquel Cua, PA", 4)
+docnum("Susanne Martin, MD",7)
+docnum("Megan Gershon, RN",18)
+
+</textarea>
+
+</body>
+
+</html>
