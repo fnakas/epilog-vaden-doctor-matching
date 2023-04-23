@@ -1,4 +1,4 @@
-# Symptom-based Doctor Matching Web App for Vaden Health Services
+# Symptom-based Doctor Matching Web App for Vaden Health Services using Logic Programming
  
 Final Project for Stanford's CS 151 course: Logic Programming.
 Authors: Tiantian Fang, Farzaan Kaiyom, Filippos Nakas
